@@ -1,10 +1,14 @@
 # SUN-DOC
 
-Status
+## Status
 
 ⚠️ This project is currently under active development.
 
 The codebase is still evolving, and functionality, structure, and dependencies may change at any time. This repository is not yet intended for production use.
+
+---
+
+## Purpose
 
 **Desktop application for automated document management and service documentation in PV plant operations.**
 
