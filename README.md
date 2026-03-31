@@ -128,16 +128,18 @@ This tool was built independently during my time as a Service Project Manager fo
 ## Requirements
 
 ```
-Python 3.10+
+# Must be run on Python 3.8.x
 PyQt5==5.15.11
 pandas==2.0.3
 SQLAlchemy==2.0.32
-mysql-connector-python==8.3.0
+mysql-connector-python==8.0.32
 odfpy==1.4.1
 ```
 
 Install dependencies:
 ```bash
+python3.8 -m venv .venv38
+source .venv38/bin/activate
 pip install -r requirements.txt
 ```
 
