@@ -1,2 +1,0 @@
-R:\_Projektrealisierung\_Dokumente\Doku\SUN Doc Fetcher\PyProjekt\SUN_Article_Fetcher-main\src\styles\stylesheet.qss;styles
-R:\_Projektrealisierung\_Dokumente\Doku\SUN Doc Fetcher\PyProjekt\SUN_Article_Fetcher-main\src\ui\icons\*.png;ui\icons
