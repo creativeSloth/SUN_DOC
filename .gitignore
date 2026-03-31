@@ -1,0 +1,67 @@
+# ========================
+# Python Bytecode
+# ========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# ========================
+# Virtuelle Umgebung
+# ========================
+.venv38/
+.venv/
+venv/
+env/
+ENV/
+
+# ========================
+# Logs / Temporäre Dateien
+# ========================
+*.log
+*.tmp
+*.bak
+*.swp
+
+# ========================
+# Distribution / Packaging
+# ========================
+build/
+dist/
+*.egg-info/
+.eggs/
+*.whl
+
+# ========================
+# IDE / Editor
+# ========================
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.iml
+
+# ========================
+# Betriebssystem-Dateien
+# ========================
+.DS_Store
+Thumbs.db
+
+# ========================
+# Datenbanken / lokale Dateien
+# ========================
+*.sqlite3
+*.db
+
+# ========================
+# Secrets / Konfigurationsdateien
+# ========================
+*.env
+config.ini
+secrets.json
+
+# ========================
+# Sonstiges
+# ========================
+*.zip
+*.tar.gz
