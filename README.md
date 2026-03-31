@@ -15,7 +15,7 @@ This project reflects a real-world internal tool developed without formal softwa
 
 ---
 
-##System Requirements
+## System Requirements
 Python 3.8.x (mandatory; the project is not compatible with Python versions >3.8)
 Virtual environment recommended
 All dependencies listed in requirements.txt
