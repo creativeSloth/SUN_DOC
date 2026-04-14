@@ -60,7 +60,7 @@ class MainWindow(QMainWindow):
         initialize_blacklist_dialogs(self)
         install_eventfilter_on_tables(self)
         initialize_table_search(self)
-        connect_tables_scroll_bar(self)DOC_2
+        connect_tables_scroll_bar(self)
         menus_base.initialize_menu_dialogs(self)
         initialize_push_buttons(self)
         customize_static_pb(self)
