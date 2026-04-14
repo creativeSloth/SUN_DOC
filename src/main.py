@@ -3,63 +3,39 @@ import sys
 from PyQt5.QtWidgets import QApplication, QFileDialog, QMainWindow
 
 from database.classes import init_local_db
-from directories.constants import (
-    DIRS,
-    DOC_1,
-    DOC_2,
-    TARGET_1,
-    TARGET_2,
-    TEMPLATE_1,
-    TEMPLATE_2,
-)
+from directories.constants import (DIRS, DOC_1, DOC_2, TARGET_1, TARGET_2,
+                                   TEMPLATE_1, TEMPLATE_2)
 from directories.directories_handler import set_static_directories
 from directories.dirs_decorators import check_path_existence, get_folder_path
-from directories.document_helpers import (
-    get_docs_paths,
-    get_save_file_dir,
-    set_doc_1_dir,
-    set_target_1_dir,
-    set_target_2_dir,
-)
+from directories.document_helpers import (get_docs_paths, get_save_file_dir,
+                                          set_doc_1_dir, set_target_1_dir,
+                                          set_target_2_dir)
 from events.filter import event_Filter
 from files.logs_and_config import (  # create_device_related_storage_list,
-    create_save_file,
-    init_config_file,
-    update_config_file,
-)
-from files.sys_files import (
-    copy_files,
-    get_files_in_directory,
-    get_matching_files,
-    get_paths,
-    get_selected_files_and_df,
-    log_and_show_result,
-    mark_matching_files,
-)
+    create_save_file, init_config_file, update_config_file)
+from files.sys_files import (copy_files, get_files_in_directory,
+                             get_matching_files, get_paths,
+                             get_selected_files_and_df, log_and_show_result,
+                             mark_matching_files)
 from save_file.load import load_fields_text, load_tables_content
 from save_file.save import save_fields_text, save_tables_content
-from source.data_origins import execute_query, get_sql_query, read_data_from_file
+from source.data_origins import (execute_query, get_sql_query,
+                                 read_data_from_file)
 from styles.styles_Handler import initialize_ui_style
 from ui.blacklists.gui_window import initialize_blacklist_dialogs
 from ui.buttons.button_lists import initialize_push_buttons
 from ui.buttons.custom_button import customize_static_pb
 from ui.menus import menus_base
 from ui.tables.constants import set_general_table_map
-from ui.tables.data_content import (
-    fill_article_table,
-    fill_device_tables,
-    initialize_table_search,
-    install_eventfilter_on_tables,
-)
+from ui.tables.data_content import (fill_article_table, fill_device_tables,
+                                    initialize_table_search,
+                                    install_eventfilter_on_tables)
 from ui.tables.data_content_helper import collect_specs_of_articles
-from ui.tables.utils import connect_sort_indicator_changed, connect_tables_scroll_bar
-from ui.text_edits.ui_fields_base import (
-    char_validation,
-    clear_docu_fields,
-    config_to_fields,
-    fill_docu_fields,
-    replace_fields_in_doc,
-)
+from ui.tables.utils import (connect_sort_indicator_changed,
+                             connect_tables_scroll_bar)
+from ui.text_edits.ui_fields_base import (char_validation, clear_docu_fields,
+                                          config_to_fields, fill_docu_fields,
+                                          replace_fields_in_doc)
 from ui.windows.mainwindow import Ui_MainWindow
 
 
@@ -84,7 +60,7 @@ class MainWindow(QMainWindow):
         initialize_blacklist_dialogs(self)
         install_eventfilter_on_tables(self)
         initialize_table_search(self)
-        connect_tables_scroll_bar(self)
+        connect_tables_scroll_bar(self)DOC_2
         menus_base.initialize_menu_dialogs(self)
         initialize_push_buttons(self)
         customize_static_pb(self)
@@ -101,7 +77,7 @@ class MainWindow(QMainWindow):
         return event_Filter(self, watched, event)
 
     def map_ui_buttons(self) -> None:
-        #  *********************************** Mapping buttons for "Article Fetcher"-module *****************************************
+        #  *********************************** Mapping buttons for "Article Fetche
 
         self.ui.load_articles_file_btn.clicked.connect(
             self.on_load_articles_from_file_btn_click
@@ -116,10 +92,10 @@ class MainWindow(QMainWindow):
 
         connect_sort_indicator_changed(self)
 
-        #  *********************************** Settings- module *****************************************
+        #  *********************************** Settings- module ******************
         menus_base.map_menu_buttons(self)
 
-        #  *********************************** Mapping buttons for "Documentation"- module *****************************************
+        #  *********************************** Mapping buttons for "Documentation"
         self.ui.load_data_to_device_lists_btn.clicked.connect(
             self.on_load_data_to_device_list_btn_click
         )
@@ -128,9 +104,12 @@ class MainWindow(QMainWindow):
             self.on_store_device_specs_btn_click
         )
 
-        self.ui.target_path_btn_2.clicked.connect(self.on_target_path_btn_2_click)
-        self.ui.create_doc1_btn.clicked.connect(self.on_btn_create_doc1_clicked)
-        self.ui.create_doc2_btn.clicked.connect(self.on_btn_create_doc2_clicked)
+        self.ui.target_path_btn_2.clicked.connect(
+            self.on_target_path_btn_2_click)
+        self.ui.create_doc1_btn.clicked.connect(
+            self.on_btn_create_doc1_clicked)
+        self.ui.create_doc2_btn.clicked.connect(
+            self.on_btn_create_doc2_clicked)
 
     # * * * * * * * * * * * * * * * * * Fetcher-module * * * * * * * * * * * * * * * *
 
@@ -143,13 +122,15 @@ class MainWindow(QMainWindow):
 
         # Überprüfen Sie, ob der Benutzer "OK" gedrückt hat
         if file_dialog.exec_() == QFileDialog.Accepted:
+
             # Erhalte den ausgewählten Dateipfad
             file_path = file_dialog.selectedFiles()[0]
 
             # Führe hier den nachfolgenden Code aus, wenn "OK" gedrückt wurde
             # Überprüfen Sie zusätzlich, ob file_path nicht leer ist
             if file_path:
-                # Lösche die vorhandenen Daten und fülle die Tabelle mit Daten aus der Datei
+                # Lösche die vorhandenen Daten und fülle die Tabelle mit Daten aus der
+                # Datei
                 df = read_data_from_file(file_path)
                 fill_article_table(self, table=self.ui.articles_list, df=df)
 
@@ -157,7 +138,8 @@ class MainWindow(QMainWindow):
         # Lese Daten aus der MySQL-Datenbank und speichere sie in der Instanzvariable df
         df = execute_query(self, query="sql1")
         update_config_file("Abfrage", "sql1", get_sql_query(self)["sql1"])
-        # Lösche die vorhandenen Daten und fülle die Tabelle mit den Daten aus der Datenbank
+        # Lösche die vorhandenen Daten und fülle die Tabelle mit den Daten aus der
+        # Datenbank
         fill_article_table(self, table=self.ui.articles_list, df=df)
 
     def on_project_text_changed(self):
