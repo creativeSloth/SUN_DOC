@@ -1,9 +1,9 @@
 from typing import Any, Dict, Set
 
 import pandas as pd
-from mysqlx import Column, Session
+from sqlalchemy.orm import Session
 from PyQt5.QtWidgets import QTableWidget
-from sqlalchemy import Engine
+from sqlalchemy import Engine, Column
 from sqlalchemy.exc import SQLAlchemyError
 
 from database.classes import Article, ArticleSpecifications, Blacklists
@@ -293,11 +293,13 @@ def get_bl_df_from_db(self, table: QTableWidget):
 
     # Definiere die SQL-Abfrage, um nur bestimmte Spalten auszuwählen
     engine: Engine = get_db_engine()
-    query: str = get_query_for_articles_on_table(self, bl_bool_arg, bl_date_arg)
+    query: str = get_query_for_articles_on_table(
+        self, bl_bool_arg, bl_date_arg)
     # Lese die Tabelle direkt in einen DataFrame
     bl_df: pd.DataFrame = pd.DataFrame()
     bl_df = pd.read_sql_query(query, con=engine)
 
-    bl_df[bl_date_arg] = bl_df[bl_date_arg].fillna("Auf allgemeiner Blackliste")
+    bl_df[bl_date_arg] = bl_df[bl_date_arg].fillna(
+        "Auf allgemeiner Blackliste")
 
     return bl_df
