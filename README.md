@@ -132,6 +132,7 @@ This tool was built independently during my time as a Service Project Manager fo
 PyQt5==5.15.11
 pandas==2.0.3
 SQLAlchemy==2.0.32
+psycopg2-binary==2.9.9
 mysql-connector-python==8.0.32
 odfpy==1.4.1
 ```
