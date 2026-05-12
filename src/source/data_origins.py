@@ -67,7 +67,8 @@ def execute_query(self, query):
         #     self.ui.query_2_input.setPlainText(sql_query)
 
         if "{{project}}" in sql_query:
-            sql_query = sql_query.replace("{{project}}", self.ui.project.toPlainText())
+            sql_query = sql_query.replace(
+                "{{project}}", self.ui.project.toPlainText())
 
         # Verwende pd.read_sql, um die Abfrage auszuführen und die Ergebnisse in einen DataFrame zu lesen
         df = pd.read_sql(sql_query, con=engine)

@@ -1,5 +1,6 @@
 import sys
 
+from pandas import DataFrame
 from PyQt5.QtWidgets import QApplication, QFileDialog, QMainWindow
 
 from database.classes import init_local_db
@@ -131,7 +132,7 @@ class MainWindow(QMainWindow):
             if file_path:
                 # Lösche die vorhandenen Daten und fülle die Tabelle mit Daten aus der
                 # Datei
-                df = read_data_from_file(file_path)
+                df: DataFrame = read_data_from_file(file_path)
                 fill_article_table(self, table=self.ui.articles_list, df=df)
 
     def on_load_articles_from_db_btn_click(self):
