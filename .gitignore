@@ -67,6 +67,8 @@ secrets.json
 # repo is usable after a fresh clone.
 !.env.example
 !docker/.env.example
+!src/logs/config.example.ini
+!example_data/
 
 # ========================
 # Sonstiges
