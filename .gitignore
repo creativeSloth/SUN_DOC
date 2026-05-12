@@ -52,13 +52,21 @@ Thumbs.db
 # ========================
 *.sqlite3
 *.db
+data
 
 # ========================
 # Secrets / Konfigurationsdateien
 # ========================
 *.env
+.env
+docker/.env
 config.ini
 secrets.json
+
+# Whitelist: example/template files MUST stay tracked so the
+# repo is usable after a fresh clone.
+!.env.example
+!docker/.env.example
 
 # ========================
 # Sonstiges
