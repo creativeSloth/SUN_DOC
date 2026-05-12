@@ -308,16 +308,29 @@ docker compose exec postgres psql -U sundoc_user -d sundoc_db
 
 ### Step 5 — Connect the SUN-DOC app to Postgres
 
+The fastest path is to copy the example config that ships with the repo
+(one-time, after fresh clone):
+
+```bash
+cp src/logs/config.example.ini src/logs/config.ini
+```
+
+This pre-fills the connection settings, the demo SQL query, and points
+the source / target paths at `example_data/` (see *Quick start with
+example data* below).
+
+Otherwise, configure manually:
 1. Start the app (`cd src && python main.py`)
 2. Open the connection settings dialog
 3. Enter the values from `docker/.env`:
-   - **DB type**: `PostgreSQL` ← important, switch the dropdown
+   - **DB type**: `PostgreSQL` (already the default, no need to change)
    - **Server**: `localhost` (or `localhost:5432`)
    - **User**: `sundoc_user`
    - **Password**: `sundoc123`
    - **DB name**: `sundoc_db`
    - **SQL query**: `SELECT article_no, article_name, amount FROM articles;`
-4. Click **"Artikel aus DB laden"** — 50 rows should appear.
+4. Click the **load-from-DB** icon button (the database icon next to the
+   article list) — 50 rows should appear.
 
 The existing code in `src/source/data_origins.py` already builds the
 `postgresql+psycopg2://…` SQLAlchemy URL based on the `DB type`
@@ -362,3 +375,55 @@ that, or prefix every command with `sudo`.
 **App says "Verbindungsfehler"** — verify Postgres is healthy with
 `docker compose ps`, then double-check `DB type` is set to
 `PostgreSQL` (not `MySQL`) in the connection dialog.
+
+---
+
+## Quick start with example data
+
+The repo ships with a small set of dummy documents under `example_data/`
+so a fresh clone can run the full Article Fetcher pipeline end-to-end
+without any manual file preparation:
+
+```
+example_data/
+├── source/
+│   ├── inverters_and_modules/   # 5 PDFs / DOCX named with article_no
+│   └── cables_and_misc/         # 5 PDFs / DOCX named with article_no
+└── target/                      # empty — receives copies on demo run
+```
+
+End-to-end run after a fresh clone:
+
+```bash
+# 1. Postgres up
+cd docker && docker compose up -d && cd ..
+
+# 2. Python deps
+python3.8 -m venv .venv38 && source .venv38/bin/activate
+pip install -r requirements.txt
+
+# 3. Pre-fill the app config (connection + example paths + demo query)
+cp src/logs/config.example.ini src/logs/config.ini
+
+# 4. Start the app
+cd src && python main.py
+```
+
+In the app:
+1. The connection settings, source path (`../example_data/source`) and
+   target path (`../example_data/target`) are already populated from
+   `config.example.ini`.
+2. Click the **load-from-DB** icon button — 50 articles load from
+   Postgres.
+3. Bold rows indicate articles for which the fetcher found a matching
+   file in `example_data/source/` (10 of the 50 articles).
+4. Tick the checkboxes for the rows you want to copy.
+5. Type a project number into the **Project** field at the top.
+6. Click the **copy / paste-docs** icon button — files are copied to
+   `example_data/target/<project>/<timestamp>/.../`.
+7. A log file lands under `src/logs/hist/`.
+
+> **Path note**: `config.example.ini` uses paths relative to the `src/`
+> directory (because the README tells you to start with
+> `cd src && python main.py`). If you start the app from a different
+> working directory, re-pick the paths via *Settings → Pfade*.
