@@ -22,6 +22,8 @@ ENV/
 *.tmp
 *.bak
 *.swp
+.db
+hist
 
 # ========================
 # Distribution / Packaging

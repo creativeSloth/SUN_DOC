@@ -48,6 +48,13 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.setWindowTitle("SUN-DOC")
+        #!#############################################################
+        #!zurzeit unsichtbar, da noch nicht fertig
+        self.ui.tabWidget.setTabVisible(1, False)
+        self.ui.actionSave.setVisible(False)
+        self.ui.actionLoad.setVisible(False)
+        self.ui.menuFile.menuAction().setVisible(False)
+        #!#############################################################
         # Variablen df und sql_query als Instanzvariable initialisieren
         self.initialize()
         # Verbinde die Signale mit den entsprechenden Slots
