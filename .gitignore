@@ -55,6 +55,7 @@ Thumbs.db
 *.sqlite3
 *.db
 data
+example_data/target/
 
 # ========================
 # Secrets / Konfigurationsdateien
