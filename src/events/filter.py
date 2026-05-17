@@ -37,7 +37,7 @@ def event_Filter(self, source: QWidget = None, event: QEvent = None) -> bool:
 
     if isinstance(source, QTableWidget):
         if event.type() == QEvent.Paint:
-            print(event)
+            # print(event)
 
             rect = event.rect()
 
@@ -45,7 +45,7 @@ def event_Filter(self, source: QWidget = None, event: QEvent = None) -> bool:
             amount_item: QTableWidgetItem = source.item(row, 3)
             if amount_item:
                 count: float = float(amount_item.text())
-            print(row)
+            # print(row)
 
             # Prüfen, ob amount_item vorhanden ist und den Wert 0 hat
             if amount_item is None or count != 0:
