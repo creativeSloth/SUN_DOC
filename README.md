@@ -16,8 +16,10 @@ This project reflects a real-world internal tool developed without formal softwa
 **Currently hidden in the UI (work in progress, code retained):**
 - The **Documentation** tab (second tab) — template-filling workflow
 - The **File** menu in the menu bar, including its **Save** and **Load** session actions
+- In **Settings → Connection**: the second SQL query input ("Doku gem. MatStR"), used by the Documentation module
+- In **Settings → Paths**: the entire **"Erstellung der Dokumentation"** block (Doc 1 / Doc 2 template paths)
 
-These features are toggled off in `src/main.py` right after `setupUi` and can be re-enabled by removing the corresponding `setVisible(False)` / `setTabVisible(1, False)` calls.
+All toggles live in a single method `_hide_wip_ui_elements()` in `src/main.py` — remove the corresponding line there to re-enable a feature.
 
 ---
 

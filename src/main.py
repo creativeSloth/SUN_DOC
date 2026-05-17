@@ -48,13 +48,6 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.setWindowTitle("SUN-DOC")
-        #!#############################################################
-        #!zurzeit unsichtbar, da noch nicht fertig
-        self.ui.tabWidget.setTabVisible(1, False)
-        self.ui.actionSave.setVisible(False)
-        self.ui.actionLoad.setVisible(False)
-        self.ui.menuFile.menuAction().setVisible(False)
-        #!#############################################################
         # Variablen df und sql_query als Instanzvariable initialisieren
         self.initialize()
         # Verbinde die Signale mit den entsprechenden Slots
@@ -70,6 +63,7 @@ class MainWindow(QMainWindow):
         initialize_table_search(self)
         connect_tables_scroll_bar(self)
         menus_base.initialize_menu_dialogs(self)
+        self._hide_wip_ui_elements()
         initialize_push_buttons(self)
         customize_static_pb(self)
         init_config_file()
@@ -80,6 +74,22 @@ class MainWindow(QMainWindow):
         initialize_ui_style(self)
 
         self.previous_project_text = self.ui.project.toPlainText()
+
+    def _hide_wip_ui_elements(self) -> None:
+        """UI-Elemente zu noch unfertigen Features ausblenden.
+
+        Code bleibt erhalten — zum Reaktivieren einfach den jeweiligen
+        Eintrag entfernen. Muss nach `initialize_menu_dialogs` laufen,
+        da auf die Settings-Dialoge zugegriffen wird.
+        """
+        # Hauptfenster: Documentation-Tab
+        self.ui.tabWidget.setTabVisible(1, False)
+        # Menüleiste: "Datei" inkl. Speichern/Laden
+        self.ui.menuFile.menuAction().setVisible(False)
+        # Settings → Verbindung: 2. SQL-Query "Doku gem. MatStR"
+        self.sett_con_dlg.ui.frame_4.setVisible(False)
+        # Settings → Pfade: Block "Erstellung der Dokumentation"
+        self.sett_paths_dlg.ui.frame_2.setVisible(False)
 
     def eventFilter(self, watched, event):
         return event_Filter(self, watched, event)
