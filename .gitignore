@@ -72,6 +72,8 @@ secrets.json
 !docker/.env.example
 !src/logs/config.example.ini
 !example_data/
+!example_data/target/
+!example_data/target/.gitkeep
 
 # ========================
 # Sonstiges
