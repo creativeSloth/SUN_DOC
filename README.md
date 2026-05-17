@@ -13,6 +13,12 @@ The codebase is still evolving, and functionality, structure, and dependencies m
 
 This project reflects a real-world internal tool developed without formal software engineering guidance. It is shared here as a portfolio project demonstrating practical Python, PyQt5, and database integration skills.
 
+**Currently hidden in the UI (work in progress, code retained):**
+- The **Documentation** tab (second tab) — template-filling workflow
+- The **File** menu in the menu bar, including its **Save** and **Load** session actions
+
+These features are toggled off in `src/main.py` right after `setupUi` and can be re-enabled by removing the corresponding `setVisible(False)` / `setTabVisible(1, False)` calls.
+
 ---
 
 ## System Requirements
@@ -34,7 +40,7 @@ SUN-DOC combines two core modules into a single desktop application:
 - Marks matched entries visually in the UI table
 - Generates a **log file** summarising results (matched, unmatched, copied count)
 
-### 🛠️ Documentation Module
+### 🛠️ Documentation Module *(currently hidden in the UI — WIP)*
 - Loads device-specific data (PV modules, inverters, batteries, charge points) from a database
 - Fills **Word document templates** automatically with device specifications pulled from the database
 - Supports two parallel document workflows (Doc 1 / Doc 2) with separate templates and target paths
@@ -47,7 +53,7 @@ SUN-DOC combines two core modules into a single desktop application:
 ### ⚙️ Settings & Persistence
 - All paths (source, target, templates) configurable via settings dialogs
 - SQL queries configurable per module
-- Session state saved and restored via save/load functionality
+- Session state saved and restored via save/load functionality *(currently hidden in the UI — WIP)*
 
 ---
 
