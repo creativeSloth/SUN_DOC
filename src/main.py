@@ -84,6 +84,8 @@ class MainWindow(QMainWindow):
         """
         # Hauptfenster: Documentation-Tab
         self.ui.tabWidget.setTabVisible(1, False)
+        # Hauptfenster: Feld "Projektname:" inkl. Label und Rahmen
+        self.ui.frame011.setVisible(False)
         # Menüleiste: "Datei" inkl. Speichern/Laden
         self.ui.menuFile.menuAction().setVisible(False)
         # Settings → Verbindung: 2. SQL-Query "Doku gem. MatStR"
