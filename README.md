@@ -161,6 +161,40 @@ python main.py
 
 ---
 
+## Tests
+
+Unit tests live under `tests/` and mirror the `src/` package layout
+(e.g. `tests/database/test_utils.py` covers `src/database/utils.py`).
+They focus on the non-UI core logic — file/config I/O, path management,
+SQLAlchemy models, data loaders, and event-filter predicates — and run
+in under a second against a temporary working directory, so no real
+Postgres/MySQL is required.
+
+Install the test dependencies (separate from runtime deps):
+
+```bash
+pip install -r requirements-dev.txt
+```
+
+Run the full suite from the repo root:
+
+```bash
+pytest
+```
+
+Run a single module or test:
+
+```bash
+pytest tests/database/test_utils.py
+pytest tests/files/test_logs_and_config.py::test_roundtrip_update_then_load
+```
+
+PyQt5 is imported by several tested modules; the suite uses the
+`offscreen` Qt platform automatically (set in `tests/conftest.py`), so
+no display server is needed.
+
+---
+
 ## Docker / PostgreSQL Setup
 
 For local development a Docker-based PostgreSQL stack is provided under
